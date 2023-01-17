@@ -16,7 +16,7 @@
 
   --fontFamily: "Comfortaa";
   --titleFontSize: 24px;
-  --fontSize: 20px;
+  --fontSize: 17px;
   --editableFontSize: 20px;
 
   --transformDeg: rotate(360deg);
@@ -74,10 +74,13 @@ nav > a {
   text-decoration-line: none;
   min-width: fit-content;
   padding: 8px 15px;
+  transition: all 0.2s;
 }
 
 nav > a:hover {
-  background-color: red;
+  background-color: white;
+  color: black;
+  padding: 9px 16px;
 }
 
 section,
@@ -88,15 +91,16 @@ aside {
 
 section {
   background-color: var(--themeBackground);
-  width: 70%;
+  min-width: 70%;
+  width: -webkit-fill-available;
 }
 
 aside {
   display: flex;
   flex-direction: column;
-  width: 30%;
   background-color: var(--theme2);
   align-items: center;
+  width: 370px;
 }
 
 aside > img {
@@ -136,7 +140,7 @@ ul li a * {
 .styleConfig {
   background-color: white;
   border-radius: 10px;
-  padding: 10px 20px;
+  padding: 5px 10px;
   margin-bottom: 30px;
   min-width: fit-content;
   max-width: 320px;
