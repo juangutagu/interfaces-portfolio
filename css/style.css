@@ -1,0 +1,274 @@
+@import "collapsible.css";
+
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&family=Concert+One&family=Pacifico&family=Roboto&family=Rubik+Gemstones&display=swap");
+
+:root {
+  --themeBackground: #dee8f1;
+  --theme1: #1d4e89;
+  --theme2: #3b7aa4;
+  --theme3: #f79256;
+  /* --theme4: #fbd1a2; */
+  --textLight: white;
+  --textDark: #403335;
+
+  /* --collapsibleBackgroundColor: #f1f1f1; */
+  --collapsibleBackgroundColor: #ffffff;
+
+  --fontFamily: "Comfortaa";
+  --titleFontSize: 24px;
+  --fontSize: 20px;
+  --editableFontSize: 20px;
+
+  --transformDeg: rotate(360deg);
+}
+
+* {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  font-family: var(--fontFamily);
+  font-size: 16px;
+}
+
+h3 {
+  margin-bottom: 6px;
+  margin-top: 6px;
+}
+
+h4 {
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+a {
+  color: var(--textLight);
+}
+
+header {
+  background-color: var(--theme1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 8vh;
+  padding: 0 4%;
+}
+
+header > img {
+  height: 7vh;
+  filter: brightness(0) invert(1);
+}
+
+nav {
+  background-color: var(--theme3);
+  border-radius: 10px;
+  display: flex;
+}
+
+nav > a {
+  text-decoration-line: none;
+  min-width: fit-content;
+  padding: 8px 15px;
+}
+
+nav > a:hover {
+  background-color: red;
+}
+
+section,
+aside {
+  padding: 18px;
+  color: var(--textDark);
+}
+
+section {
+  background-color: var(--themeBackground);
+  width: 70%;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  background-color: var(--theme2);
+  align-items: center;
+}
+
+aside > img {
+  /* background-color: white; */
+  width: -webkit-fill-available;
+  margin: 20px;
+}
+
+footer {
+  background-color: var(--theme1);
+  color: white;
+  padding: 2px;
+  min-height: 10vh;
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row-reverse;
+  align-items: center;
+  padding: 18px;
+}
+
+footer > div {
+  margin-right: 15px;
+}
+
+footer > nav {
+  height: fit-content;
+}
+
+/* -------------------------------------------------------- Listas */
+ul li a * {
+  color: var(--textDark);
+  text-decoration: underline;
+}
+
+/* -------------------------------------------------------- */
+
+.flex {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+}
+
+.styleConfig {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  min-width: fit-content;
+  max-width: 320px;
+  width: -webkit-fill-available;
+}
+
+.left {
+  width: 45%;
+  float: left;
+}
+
+.right {
+  width: 55%;
+  float: right;
+}
+
+.skill {
+  width: 180px;
+}
+
+.mainContainer {
+  display: flex;
+  width: 100vw;
+  min-height: 82vh;
+}
+
+.editableContainer {
+  font-size: var(--editableFontSize);
+}
+
+.configButton {
+  font-weight: bolder;
+  border: 1.5px solid black;
+  border-radius: 30px;
+  padding: 5px;
+  margin: 0 10px;
+}
+
+.configButton:disabled {
+  border-color: silver;
+}
+
+.configButton:hover {
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------- */
+/* TODO: quitar los important */
+
+.simplifyBlack.ON {
+  background-color: black !important;
+  color: white !important;
+}
+
+.simplifyBlack.ON:after {
+  color: white !important;
+}
+
+img.simplifyBlack.ON {
+  background-color: white !important;
+  filter: brightness(100) invert(1) !important;
+}
+
+.simplifyWhite.ON {
+  background-color: white !important;
+  color: black !important;
+}
+
+.simplifyWhite.ON:after {
+  color: black !important;
+}
+
+img.simplifyWhite.ON {
+  background-color: transparent !important;
+  filter: brightness(0) !important;
+}
+
+/* -------------------------------------------------------- */
+
+@media (max-width: 1000px) {
+  header {
+    padding: 0;
+    flex-flow: column;
+  }
+
+  header > nav {
+    width: 100%;
+    border-radius: 0;
+    flex-flow: column;
+  }
+
+  header > nav > a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .mainContainer {
+    flex-direction: column;
+    flex-flow: column-reverse;
+  }
+
+  section,
+  aside {
+    width: 100%;
+  }
+
+  aside {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  footer {
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+
+  footer > div {
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+}
+
+/* -------------------------------------------------------- otros */
+
+.fullWidth {
+  width: 100%;
+}
