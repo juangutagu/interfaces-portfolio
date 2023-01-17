@@ -133,12 +133,6 @@ ul li a * {
 
 /* -------------------------------------------------------- */
 
-.flex {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-around;
-}
-
 .styleConfig {
   background-color: white;
   border-radius: 10px;
@@ -271,4 +265,10 @@ img.simplifyWhite.ON {
 
 .fullWidth {
   width: 100%;
+}
+
+.flex {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
 }
