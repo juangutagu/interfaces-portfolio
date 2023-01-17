@@ -16,6 +16,7 @@
 }
 
 .score {
+  padding: 1rem !important;
   font-family: monospace;
   text-align: center;
   font-size: 2rem;
@@ -28,7 +29,7 @@
 
 #play-again-btn {
   position: absolute;
-  top: -0.5rem;
+  top: 0.75rem;
   left: 50%;
   margin-left: -50px;
   font-size: 1rem;
