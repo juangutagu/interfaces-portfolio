@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" type="image/x-icon" href="/assets/icon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>DranNDrop - Reciclaje - JuanGutierrezA</title>
+  </head>
+  <body class="simplifyColorON">
+    <div data-include="header"></div>
+
+    <div class="mainContainer">
+      <!-- ----------------------- START CONTENT ----------------------- -->
+      <section class="fullWidth">
+        <link rel="stylesheet" href="style.css" />
+        <div class="videoContainer">
+          <video id="myVideo">
+            <source id="mp4_src" src="https://www.w3schools.com/tags/mov_bbb.mp4" type="video/mp4" />
+            <source id="ogg_src" src="mov_bbb.ogg" type="video/ogg" />
+            Your browser does not support HTML5 video.
+          </video>
+
+          <input id="progressBar" type="range" min="0" max="100" value="0" step="1" />
+
+          <div class="videoControls">
+            <button id="playPause" class="play">Play</button>
+            <button id="mute">Mute</button>
+            <input id="volumeBar" type="range" min="0" max="1" step="0.1" />
+            <button id="fullScreen">Full-Screen</button>
+          </div>
+        </div>
+        <script src="script.js"></script>
+      </section>
+      <!-- ----------------------- END CONTENT ----------------------- -->
+    </div>
+
+    <div data-include="footer"></div>
+  </body>
+
+  <script src="/js/collapsible.js"></script>
+  <script src="/js/includeHTML.js"></script>
+  <script src="/js/script.js"></script>
+</html>

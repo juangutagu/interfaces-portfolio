@@ -1,0 +1,21 @@
+.videoContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 600px;
+  padding: 0;
+  margin: auto;
+}
+
+.videoContainer > *:first-child {
+  margin-bottom: 2rem;
+}
+
+#progressBar {
+  width: 300px;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}

@@ -1,6 +1,6 @@
 @import "collapsible.css";
 
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa&family=Concert+One&family=Pacifico&family=Roboto&family=Rubik+Gemstones&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&family=Concert+One&family=Pacifico&family=Roboto&family=Rubik+Gemstones&display=swap&family=Montserrat");
 
 :root {
   --themeBackground: #dee8f1;
@@ -245,6 +245,8 @@ img.simplifyWhite.ON {
   section,
   aside {
     width: 100%;
+    /* it's not the best */
+    min-height: inherit;
   }
 
   aside {
