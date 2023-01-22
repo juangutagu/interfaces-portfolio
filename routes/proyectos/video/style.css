@@ -1,21 +1,41 @@
 .videoContainer {
+  background-color: grey;
+  width: min-content;
+  padding: 0;
+  margin: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 600px;
-  padding: 0;
-  margin: auto;
 }
 
-.videoContainer > *:first-child {
-  margin-bottom: 2rem;
+.videoControls{
+  display: flex;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #ddd;
+  align-items: center;
+}
+
+.videoControls > * {
+  margin: 0 0.5rem;
+}
+
+#playPause{
+  width: 80px;
+}
+
+#mute{
+  width: 100px;
 }
 
 #progressBar {
-  width: 300px;
-  height: 10px;
   background-color: #ddd;
   border-radius: 5px;
+  width: inherit;
+  height: 10px;
   overflow: hidden;
-  margin-bottom: 1rem;
+}
+
+#fullScreen {
+  width: 140px;
 }

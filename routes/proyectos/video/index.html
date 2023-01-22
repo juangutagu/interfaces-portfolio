@@ -16,18 +16,16 @@
         <link rel="stylesheet" href="style.css" />
         <div class="videoContainer">
           <video id="myVideo">
-            <source id="mp4_src" src="https://www.w3schools.com/tags/mov_bbb.mp4" type="video/mp4" />
-            <source id="ogg_src" src="mov_bbb.ogg" type="video/ogg" />
+            <source id="mp4_src" src="/assets/video.mp4" type="video/mp4" />
             Your browser does not support HTML5 video.
           </video>
-
-          <input id="progressBar" type="range" min="0" max="100" value="0" step="1" />
 
           <div class="videoControls">
             <button id="playPause" class="play">Play</button>
             <button id="mute">Mute</button>
             <input id="volumeBar" type="range" min="0" max="1" step="0.1" />
-            <button id="fullScreen">Full-Screen</button>
+            <input id="progressBar" type="range" min="0" max="100" value="0" step="1" />
+            <button id="fullScreen">FullScreen</button>
           </div>
         </div>
         <script src="script.js"></script>

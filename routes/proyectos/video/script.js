@@ -77,4 +77,10 @@ function changeVolume() {
 function changeProgressBar() {
   const time = myVideo.duration * (progressBar.value / 100);
   myVideo.currentTime = time;
+  if (progressBar.value == 100) playPauseButton.innerHTML = "Replay";
+  else if (myVideo.paused) {
+    playPauseButton.innerHTML = "Play";
+  } else {
+    playPauseButton.innerHTML = "Pause";
+  }
 }
