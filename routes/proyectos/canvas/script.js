@@ -110,7 +110,7 @@ ctx3.fill();
 
 // door open
 ctx3.beginPath();
-ctx3.arc(90, 95, 2, 0, 2 * Math.PI);
+ctx3.arc(95, 95, 2, 0, 2 * Math.PI);
 ctx3.stroke();
 ctx3.fillStyle = "black";
 ctx3.fill();
