@@ -57,3 +57,79 @@ ctx2.lineTo(150, 80);
 ctx2.lineTo(150, 40);
 
 ctx2.stroke();
+
+// draw a house
+const canvas3 = document.getElementById("myCanvas3");
+const ctx3 = canvas3.getContext("2d");
+
+// roof
+ctx3.beginPath();
+ctx3.moveTo(50, 50);
+ctx3.lineTo(100, 10);
+ctx3.lineTo(150, 50);
+ctx3.lineTo(50, 50);
+ctx3.closePath();
+ctx3.stroke();
+ctx3.fillStyle = "brown";
+ctx3.fill();
+
+// chimney
+ctx3.beginPath();
+ctx3.moveTo(130, 10);
+ctx3.lineTo(130, 33);
+ctx3.lineTo(140, 41);
+ctx3.lineTo(140, 10);
+ctx3.lineTo(130, 10);
+ctx3.closePath();
+ctx3.stroke();
+ctx3.fillStyle = "brown";
+ctx3.fill();
+
+// walls
+ctx3.beginPath();
+ctx3.moveTo(50, 50);
+ctx3.lineTo(50, 110);
+ctx3.lineTo(150, 110);
+ctx3.lineTo(150, 50);
+ctx3.lineTo(50, 50);
+ctx3.closePath();
+ctx3.stroke();
+ctx3.fillStyle = "white";
+ctx3.fill();
+
+// door
+ctx3.beginPath();
+ctx3.moveTo(75, 110);
+ctx3.lineTo(75, 80);
+ctx3.lineTo(100, 80);
+ctx3.lineTo(100, 110);
+ctx3.lineTo(75, 110);
+ctx3.stroke();
+ctx3.fillStyle = "brown";
+ctx3.fill();
+
+// door open
+ctx3.beginPath();
+ctx3.arc(90, 95, 2, 0, 2 * Math.PI);
+ctx3.stroke();
+ctx3.fillStyle = "black";
+ctx3.fill();
+
+// window
+ctx3.beginPath();
+ctx3.moveTo(120, 80);
+ctx3.lineTo(120, 60);
+ctx3.lineTo(140, 60);
+ctx3.lineTo(140, 80);
+ctx3.lineTo(120, 80);
+ctx3.stroke();
+ctx3.fillStyle = "lightblue";
+ctx3.fill();
+
+// window lines
+ctx3.beginPath();
+ctx3.moveTo(120, 70);
+ctx3.lineTo(140, 70);
+ctx3.moveTo(130, 60);
+ctx3.lineTo(130, 80);
+ctx3.stroke();
