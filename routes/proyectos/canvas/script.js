@@ -133,3 +133,137 @@ ctx3.lineTo(140, 70);
 ctx3.moveTo(130, 60);
 ctx3.lineTo(130, 80);
 ctx3.stroke();
+
+
+// circunferencias concéntricas rellenas
+const canvas4 = document.getElementById("myCanvas4");
+const ctx4 = canvas4.getContext("2d");
+
+ctx4.beginPath();
+ctx4.arc(80, 100, 50, 0, 2 * Math.PI);
+ctx4.fillStyle = "red";
+ctx4.fill();
+
+ctx4.beginPath();
+ctx4.arc(80, 100, 40, 0, 2 * Math.PI);
+ctx4.fillStyle = "yellow";
+ctx4.fill();
+
+ctx4.beginPath();
+ctx4.arc(80, 100, 20, 0, 2 * Math.PI);
+ctx4.fillStyle = "red";
+ctx4.fill();
+
+let radianes = 0;
+// radianes = Math.PI / 180*90;
+
+for (let i = 0; i < 3; i++) {
+  ctx4.beginPath();
+  ctx4.arc(220, 100, 50 - i * 15, radianes, 2 * Math.PI);
+  ctx4.fillStyle = i % 2 === 0 ? "red" : "yellow";
+  ctx4.fill();
+}
+
+// pintar una nube
+const canvas5 = document.getElementById("myCanvas5");
+const ctx5 = canvas5.getContext("2d");
+
+ctx5.fillStyle = "white";
+ctx5.beginPath();
+ctx5.arc(50, 50, 30, 0, 2 * Math.PI);
+ctx5.fill();
+
+ctx5.beginPath();
+ctx5.arc(90, 50, 30, 0, 2 * Math.PI);
+ctx5.fill();
+
+ctx5.beginPath();
+ctx5.arc(130, 50, 30, 0, 2 * Math.PI);
+ctx5.fill();
+
+ctx5.beginPath();
+ctx5.arc(70, 80, 30, 0, 2 * Math.PI);
+ctx5.fill();
+
+ctx5.beginPath();
+ctx5.arc(110, 80, 30, 0, 2 * Math.PI);
+ctx5.fill();
+
+// pintar el logo de los juegos olímpicos
+const canvas6 = document.getElementById("myCanvas6");
+const ctx6 = canvas6.getContext("2d");
+
+ctx6.lineWidth = 5;
+
+ctx6.beginPath();
+ctx6.arc(60, 60, 30, 0, 2 * Math.PI);
+ctx6.strokeStyle = "blue";
+ctx6.stroke();
+
+ctx6.beginPath();
+ctx6.arc(130, 60, 30, 0, 2 * Math.PI);
+ctx6.strokeStyle = "black";
+ctx6.stroke();
+
+ctx6.beginPath();
+ctx6.arc(200, 60, 30, 0, 2 * Math.PI);
+ctx6.strokeStyle = "red";
+ctx6.stroke();
+
+ctx6.beginPath();
+ctx6.arc(95, 90, 30, 0, 2 * Math.PI);
+ctx6.strokeStyle = "yellow";
+ctx6.stroke();
+
+ctx6.beginPath();
+ctx6.arc(165, 90, 30, 0, 2 * Math.PI);
+ctx6.strokeStyle = "green";
+ctx6.stroke();
+
+// -- Línea azul
+ctx6.beginPath();
+ctx6.arc(60, 60, 30, 6, 0.5);
+ctx6.strokeStyle = "blue";
+ctx6.stroke();
+
+// -- Líneas negras
+ctx6.beginPath();
+ctx6.arc(130, 60, 30, 6, 0.5);
+ctx6.strokeStyle = "black";
+ctx6.stroke();
+
+ctx6.beginPath();
+ctx6.arc(130, 60, 30, 6, 2);
+ctx6.strokeStyle = "black";
+ctx6.stroke();
+
+// -- Línea roja
+ctx6.beginPath();
+ctx6.arc(200, 60, 30, 6, 2);
+ctx6.strokeStyle = "red";
+ctx6.stroke();
+
+// -- Líneas amarillas
+ctx6.beginPath();
+ctx6.arc(95, 90, 30, 4.7, -1);
+ctx6.strokeStyle = "yellow";
+ctx6.stroke();
+
+ctx6.beginPath();
+ctx6.arc(95, 90, 30, 3, 3.5);
+ctx6.strokeStyle = "yellow";
+ctx6.stroke();
+
+// -- Líneas verdes
+ctx6.beginPath();
+ctx6.arc(165, 90, 30, 2.5, -2.5);
+ctx6.strokeStyle = "green";
+ctx6.stroke();
+
+
+
+
+
+
+
+
