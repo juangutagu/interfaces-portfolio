@@ -19,6 +19,7 @@ let NCOLS = 5;
 let BRICKWIDTH;
 let BRICKHEIGHT = 15;
 let PADDING = 1;
+let PADDLE_PADDING = 40;
 
 function init() {
   ctx = $("#canvas")[0].getContext("2d");
@@ -34,6 +35,13 @@ function init() {
 function randomDx() {
   simbolo = Math.random() > 0.5 ? "" : "-";
   return simbolo.concat(Math.random() * 5);
+}
+
+function resetBall() {
+  x = 200;
+  y = 400;
+  dx = Number(randomDx());
+  dy = -4;
 }
 
 function circle(x, y, r) {
@@ -79,21 +87,18 @@ $(document).mousemove(onMouseMove);
 
 function initbricks() {
   bricks = new Array(NROWS);
-  console.log("NROWS", NROWS);
   for (i = 0; i < NROWS; i++) {
     bricks[i] = new Array(NCOLS);
     for (j = 0; j < NCOLS; j++) {
       bricks[i][j] = NROWS - i;
-      console.log("i", i);
     }
   }
-  console.log("bricks", bricks);
 }
 
 function drawbricks() {
   for (i = 0; i < NROWS; i++) {
     for (j = 0; j < NCOLS; j++) {
-      ctx.fillStyle = rowcolors[bricks[i][j]-1];
+      ctx.fillStyle = rowcolors[bricks[i][j] - 1];
       if (bricks[i][j] !== 0) {
         rect(j * (BRICKWIDTH + PADDING) + PADDING, i * (BRICKHEIGHT + PADDING) + PADDING, BRICKWIDTH, BRICKHEIGHT);
       }

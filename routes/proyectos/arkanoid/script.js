@@ -3,6 +3,7 @@ let rowcolors = ["#EB0093", "#0008DB", "#00A308", "#FFFD0A", "#FF1C0A"];
 let paddlecolor = "#FFFFFF";
 let ballcolor = "#FFFFFF";
 let backcolor = "#000000";
+let lifes = 3;
 
 function draw() {
   ctx.fillStyle = backcolor;
@@ -13,7 +14,7 @@ function draw() {
   if (rightDown) paddlex += 5;
   else if (leftDown) paddlex -= 5;
   ctx.fillStyle = paddlecolor;
-  rect(paddlex, HEIGHT - paddleh, paddlew, paddleh);
+  rect(paddlex, HEIGHT - paddleh - PADDLE_PADDING, paddlew, paddleh);
 
   drawbricks();
 
@@ -32,12 +33,23 @@ function draw() {
   if (x + dx + ballr > WIDTH || x + dx - ballr < 0) dx = -dx;
 
   if (y + dy - ballr < 0) dy = -dy;
-  else if (y + dy + ballr > HEIGHT - paddleh) {
+  else if (y + dy + ballr > HEIGHT - paddleh - PADDLE_PADDING) {
     if (x > paddlex && x < paddlex + paddlew) {
       //move the ball differently based on where it hit the paddle
       dx = 8 * ((x - (paddlex + paddlew / 2)) / paddlew);
       dy = -dy;
-    } else if (y + dy + ballr > HEIGHT) clearInterval(intervalId);
+    } else if (y + dy + ballr > HEIGHT) {
+      lifes--;
+      if (lifes <= 0) {
+        alert("Game Over");
+        clearInterval(intervalId);
+        play();
+      } else {
+        console.log("Life lost", lifes);
+        resetBall();
+        paddlex = WIDTH / 2;
+      }
+    }
   }
 
   x += dx;
@@ -45,11 +57,7 @@ function draw() {
 }
 
 function play() {
-  x = 200;
-  y = 400;
-  dx = Number(randomDx());
-  dy = -4;
-  clearInterval(intervalId);
+  resetBall();
   init();
   initbricks();
   draw();
