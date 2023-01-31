@@ -1,0 +1,7 @@
+--- · Bricks de diferentes colores con diferentes durezas 
+  Por ejemplo: amarillo rompe a la primera, verde rompe a la segunda, rojo rompe a la tercera, azul rompe a la cuarta, etc.
+  Y van cambiando de color en cada golpe.
+
+· 3 vidas
+
+· bonus, sale algo que si lo coges se ralentiza la pelota

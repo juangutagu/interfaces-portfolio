@@ -1,0 +1,25 @@
+.inner {
+  width: min-content;
+  padding: 0;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#play-button {
+  background-color: green;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 0.5rem;
+  margin: 1rem;
+
+}
+
+#breakout {
+  background-color: black;
+  cursor: none;
+}
