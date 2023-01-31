@@ -20,8 +20,11 @@ let BRICKWIDTH;
 let BRICKHEIGHT = 15;
 let PADDING = 1;
 let PADDLE_PADDING = 40;
+let lifes = 3;
 
 function init() {
+  lifes = 3;
+
   ctx = $("#canvas")[0].getContext("2d");
   WIDTH = $("#canvas").width();
   HEIGHT = $("#canvas").height();
@@ -104,4 +107,14 @@ function drawbricks() {
       }
     }
   }
+}
+
+function drawLifes(lifes) {
+    let heart = "♥";
+    let hearts = heart.repeat(lifes);
+    ctx.fillStyle = "red";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "bottom";
+    ctx.font = "bold 20px sans-serif";
+    ctx.fillText(hearts, 10, HEIGHT - 10);
 }
