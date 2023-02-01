@@ -1,7 +1,16 @@
 let x = 200;
 let y = 400;
-let dx = Number(randomDx());
-let dy = -4;
+let dx = Number(randomdx());
+let dy = -4,
+  initialdy = -4;
+
+let bonusx,
+  bonusy,
+  bonusdy = 1,
+  bonusBricks,
+  bonusActive = false,
+  bonusTime = 0;
+
 let ctx;
 let WIDTH;
 let HEIGHT;
@@ -21,9 +30,11 @@ let BRICKHEIGHT = 15;
 let PADDING = 1;
 let PADDLE_PADDING = 40;
 let lifes = 3;
+let brokenBricks = 0;
 
 function init() {
   lifes = 3;
+  brokenBricks = 0;
 
   ctx = $("#canvas")[0].getContext("2d");
   WIDTH = $("#canvas").width();
@@ -35,7 +46,7 @@ function init() {
   intervalId = setInterval(draw, 10);
 }
 
-function randomDx() {
+function randomdx() {
   simbolo = Math.random() > 0.5 ? "" : "-";
   return simbolo.concat(Math.random() * 5);
 }
@@ -43,7 +54,7 @@ function randomDx() {
 function resetBall() {
   x = 200;
   y = 400;
-  dx = Number(randomDx());
+  dx = Number(randomdx());
   dy = -4;
 }
 
@@ -110,11 +121,51 @@ function drawbricks() {
 }
 
 function drawLifes(lifes) {
-    let heart = "♥";
-    let hearts = heart.repeat(lifes);
-    ctx.fillStyle = "red";
-    ctx.textAlign = "left";
-    ctx.textBaseline = "bottom";
-    ctx.font = "bold 20px sans-serif";
-    ctx.fillText(hearts, 10, HEIGHT - 10);
+  let heart = "♥";
+  let hearts = heart.repeat(lifes);
+  ctx.fillStyle = "red";
+  ctx.textAlign = "left";
+  ctx.textBaseline = "bottom";
+  ctx.font = "bold 20px sans-serif";
+  ctx.fillText(hearts, 10, HEIGHT - 10);
+}
+
+// draw a bonus that slides down
+function drawBonus() {
+  ctx.fillStyle = "red";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.font = "bold 20px sans-serif";
+  ctx.fillText("🎁", bonusx, bonusy);
+}
+
+// reset bonus
+function resetBonus() {
+  console.log("RESET BONUS");
+  if (bonusActive) dy *= 2;
+  bonusActive = false;
+
+  bonusTime = 0;
+  // bonusBricks = brokenBricks + 1;
+  bonusBricks = brokenBricks + Math.floor(Math.random() * 5 + 3);
+  bonusx = Math.floor(Math.random() * WIDTH - 10 + 5);
+  bonusy = Math.floor(Math.random() * (HEIGHT - 200) + 100);
+}
+
+// activate bonus
+function activateBonus() {
+  console.log("ACTIVATE BONUS");
+  dy /= 2;
+
+  bonusActive = true;
+  bonusTime += Math.floor(Math.random() * 2000 + 500);
+}
+
+function checkBonus() {
+  if (bonusActive) {
+    bonusTime -= 1;
+    if (bonusTime <= 0) {
+      resetBonus();
+    }
+  }
 }
