@@ -1,16 +1,60 @@
 let x = 200;
 let y = 400;
 let dx = Number(randomdx());
-let dy = -4,
-  initialdy = -4;
+let dy = -4;
 
-let bonusx,
-  bonusy,
-  bonusdy = 1,
-  bonusBricks,
-  bonusActive = false,
-  bonusTimeInitial = 0,
-  bonusTime = 0;
+let ball2 = true;
+let x2 = 200;
+let y2 = 400;
+let dx2 = Number(randomdx());
+let dy2 = -4;
+
+const bonusProps = [
+  {
+    type: "slow",
+    barColor: "green",
+    icon: "🎁",
+    action: () => (dy /= 2),
+    endAction: () => (dy *= 2),
+  },
+  {
+    type: "fast",
+    barColor: "red",
+    icon: "🎁",
+    action: () => (dy *= 2),
+    endAction: () => (dy /= 2),
+  },
+  {
+    type: "bigPaddle",
+    barColor: "lightblue",
+    icon: "↔️",
+    action: () => (paddlew *= 2),
+    endAction: () => (paddlew /= 2),
+  },
+  {
+    type: "smallPaddle",
+    barColor: "red",
+    icon: "↔️",
+    action: () => (paddlew /= 2),
+    endAction: () => (paddlew *= 2),
+  },
+  {
+    type: "bigBall",
+    barColor: "green",
+    icon: "↔️",
+    action: () => (ballr *= 2),
+    endAction: () => (ballr /= 2),
+  },
+];
+let bonusType = Math.floor(Math.random() * bonusProps.length);
+
+let bonusx;
+let bonusy;
+let bonusdy = 1;
+let bonusBricks;
+let bonusActive = false;
+let bonusTimeInitial = 0;
+let bonusTime = 0;
 
 let ctx;
 let WIDTH;
@@ -33,30 +77,10 @@ let PADDLE_PADDING = 40;
 let lifes = 3;
 let brokenBricks = 0;
 
-function init() {
-  lifes = 3;
-  brokenBricks = 0;
-
-  ctx = $("#canvas")[0].getContext("2d");
-  WIDTH = $("#canvas").width();
-  HEIGHT = $("#canvas").height();
-  paddlex = WIDTH / 2;
-  BRICKWIDTH = WIDTH / NCOLS - 1;
-  canvasMinX = $("#canvas").offset().left;
-  canvasMaxX = canvasMinX + WIDTH;
-  intervalId = setInterval(draw, 10);
-}
-
+// ---------------------------------------------------------------------- INIT
 function randomdx() {
   simbolo = Math.random() > 0.5 ? "" : "-";
   return simbolo.concat(Math.random() * 5);
-}
-
-function resetBall() {
-  x = 200;
-  y = 400;
-  dx = Number(randomdx());
-  dy = -4;
 }
 
 function circle(x, y, r) {
@@ -78,6 +102,7 @@ function clear() {
   rect(0, 0, WIDTH, HEIGHT);
 }
 
+// ---------------------------------------------------------------------- PADDLE EVENTS
 function onKeyDown(evt) {
   if (evt.keyCode == 39) rightDown = true;
   else if (evt.keyCode == 37) leftDown = true;
@@ -100,6 +125,7 @@ function onMouseMove(evt) {
 
 $(document).mousemove(onMouseMove);
 
+// ---------------------------------------------------------------------- BRICKS
 function initbricks() {
   bricks = new Array(NROWS);
   for (i = 0; i < NROWS; i++) {
@@ -121,6 +147,7 @@ function drawbricks() {
   }
 }
 
+// ---------------------------------------------------------------------- LIFES
 function drawLifes(lifes) {
   let heart = "♥";
   let hearts = heart.repeat(lifes);
@@ -131,13 +158,72 @@ function drawLifes(lifes) {
   ctx.fillText(hearts, 10, HEIGHT - 10);
 }
 
+// ---------------------------------------------------------------------- BALLS
+function resetBall(ball = 1) {
+  if (ball === 1) {
+    x = 200;
+    y = 400;
+    dx = Number(randomdx());
+    dy = -4;
+  } else if (ball === 2) {
+    x2 = 200;
+    y2 = 400;
+    dx2 = Number(randomdx());
+    dy2 = -4;
+  }
+}
+
+function handleBall(row, col, ball = 1) {
+  //reverse the ball and edit the brick value
+  if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] !== 0) {
+    dy = -dy;
+    bricks[row][col] -= 1;
+    if (bricks[row][col] === 0) {
+      brokenBricks++;
+    }
+  }
+
+  // rebound from the left or right side of the canvas
+  if (x + dx + ballr > WIDTH || x + dx - ballr < 0) dx = -dx;
+
+  // rebound from the top of the canvas
+  if (y + dy - ballr < 0) dy = -dy;
+
+  // if the ball goes below the paddle, lose a life
+  if (y + dy + ballr > HEIGHT - paddleh - PADDLE_PADDING) {
+    if (x > paddlex && x < paddlex + paddlew) {
+      //move the ball differently based on where it hit the paddle
+      dx = 8 * ((x - (paddlex + paddlew / 2)) / paddlew);
+      dy = -dy;
+    } else if (y + dy + ballr > HEIGHT) {
+      if (bonusActive) resetBonus();
+      lifes--;
+      if (lifes <= 0) {
+        gameOver();
+      } else {
+        resetBall();
+      }
+    }
+  }
+
+  // move the ball
+  x += dx;
+  y += dy;
+}
+
+// ---------------------------------------------------------------------- BONUS
+// random bonus
+function randomBonus() {
+  bonusType = Math.floor(Math.random() * bonusProps.length);
+}
+
 // draw a bonus that slides down
 function drawBonus() {
   ctx.fillStyle = "red";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.font = "bold 20px sans-serif";
-  ctx.fillText("🎁", bonusx, bonusy);
+  ctx.fillText(bonusProps[bonusType].icon, bonusx, bonusy);
 }
 
 // draw a rectangle to show the duration of the bonus
@@ -148,7 +234,7 @@ function drawBonusDuration() {
     ctx.fillRect(290, HEIGHT - 30, 100, 16);
 
     const barFill = (bonusTime / bonusTimeInitial) * 100;
-    ctx.fillStyle = "green";
+    ctx.fillStyle = bonusProps[bonusType].barColor;
     ctx.fillRect(290, HEIGHT - 30, barFill, 16);
   }
 }
@@ -156,20 +242,22 @@ function drawBonusDuration() {
 // reset bonus
 function resetBonus() {
   console.log("RESET BONUS");
-  if (bonusActive) dy *= 2;
+  if (bonusActive) bonusProps[bonusType].endAction();
   bonusActive = false;
+
+  randomBonus();
 
   bonusTime = 0;
   bonusBricks = brokenBricks + Math.floor(Math.random() * 5 + 3);
   bonusBricks = brokenBricks + 1;
-  bonusx = Math.floor(Math.random() * WIDTH - 10 + 5);
+  bonusx = Math.floor(Math.random() * (WIDTH - 20) + 10);
   bonusy = Math.floor(Math.random() * (HEIGHT - 200) + 100);
 }
 
 // activate bonus
 function activateBonus() {
   console.log("ACTIVATE BONUS");
-  dy /= 2;
+  bonusProps[bonusType].action();
 
   bonusActive = true;
   // bonusTime aleatorio entre 500 y 1000
