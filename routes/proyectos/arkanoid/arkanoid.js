@@ -9,6 +9,7 @@ let bonusx,
   bonusdy = 1,
   bonusBricks,
   bonusActive = false,
+  bonusTimeInitial = 0,
   bonusTime = 0;
 
 let ctx;
@@ -139,6 +140,19 @@ function drawBonus() {
   ctx.fillText("🎁", bonusx, bonusy);
 }
 
+// draw a rectangle to show the duration of the bonus
+function drawBonusDuration() {
+  if (bonusActive) {
+    // draw an outer rectangle
+    ctx.fillStyle = "white";
+    ctx.fillRect(290, HEIGHT - 30, 100, 16);
+
+    const barFill = (bonusTime / bonusTimeInitial) * 100;
+    ctx.fillStyle = "green";
+    ctx.fillRect(290, HEIGHT - 30, barFill, 16);
+  }
+}
+
 // reset bonus
 function resetBonus() {
   console.log("RESET BONUS");
@@ -146,8 +160,8 @@ function resetBonus() {
   bonusActive = false;
 
   bonusTime = 0;
-  // bonusBricks = brokenBricks + 1;
   bonusBricks = brokenBricks + Math.floor(Math.random() * 5 + 3);
+  bonusBricks = brokenBricks + 1;
   bonusx = Math.floor(Math.random() * WIDTH - 10 + 5);
   bonusy = Math.floor(Math.random() * (HEIGHT - 200) + 100);
 }
@@ -158,12 +172,15 @@ function activateBonus() {
   dy /= 2;
 
   bonusActive = true;
-  bonusTime += Math.floor(Math.random() * 2000 + 500);
+  // bonusTime aleatorio entre 500 y 1000
+  bonusTime = Math.floor(Math.random() * 500 + 500);
+  bonusTimeInitial = bonusTime;
 }
 
 function checkBonus() {
   if (bonusActive) {
     bonusTime -= 1;
+    drawBonusDuration();
     if (bonusTime <= 0) {
       resetBonus();
     }
