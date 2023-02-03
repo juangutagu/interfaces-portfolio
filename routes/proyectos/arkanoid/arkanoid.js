@@ -10,6 +10,12 @@ let y2 = 400;
 let dx2 = Number(randomdx());
 let dy2 = -4;
 
+
+// De forma aleatoria, se genera un bonus de bola nueva en cualquier momento
+// Si el jugador la coge, se genera una nueva bola
+// Si no la coge, se resetea el bonus
+// Si jugando con dos bolas se nos cae una, no pierdes vidas y se resetea el bonus
+// - El resto de bonus afectan a las dos bolas
 let newBall = false;
 let ballbonusx;
 let ballbonusy;
