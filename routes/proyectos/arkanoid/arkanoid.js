@@ -1,28 +1,52 @@
+let ball1 = true;
 let x = 200;
 let y = 400;
 let dx = Number(randomdx());
 let dy = -4;
 
-let ball2 = true;
+let ball2 = false;
 let x2 = 200;
 let y2 = 400;
 let dx2 = Number(randomdx());
 let dy2 = -4;
+
+let newBall = false;
+let ballbonusx;
+let ballbonusy;
+const bonusBall = {
+  type: "ball",
+  icon: "🏐",
+  action: () => {
+    ball1 === false ? (ball1 = true) : (ball2 = true);
+  },
+};
 
 const bonusProps = [
   {
     type: "slow",
     barColor: "green",
     icon: "🎁",
-    action: () => (dy /= 2),
-    endAction: () => (dy *= 2),
+    action: () => {
+      dy /= 2;
+      dy2 /= 2;
+    },
+    endAction: () => {
+      dy *= 2;
+      dy2 *= 2;
+    },
   },
   {
     type: "fast",
     barColor: "red",
     icon: "🎁",
-    action: () => (dy *= 2),
-    endAction: () => (dy /= 2),
+    action: () => {
+      dy *= 2;
+      dy2 *= 2;
+    },
+    endAction: () => {
+      dy /= 2;
+      dy2 /= 2;
+    },
   },
   {
     type: "bigPaddle",
@@ -46,6 +70,7 @@ const bonusProps = [
     endAction: () => (ballr /= 2),
   },
 ];
+
 let bonusType = Math.floor(Math.random() * bonusProps.length);
 
 let bonusx;
@@ -173,7 +198,7 @@ function resetBall(ball = 1) {
   }
 }
 
-function handleBall(row, col, ball = 1) {
+function handleBall(row, col) {
   //reverse the ball and edit the brick value
   if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] !== 0) {
     dy = -dy;
@@ -196,12 +221,16 @@ function handleBall(row, col, ball = 1) {
       dx = 8 * ((x - (paddlex + paddlew / 2)) / paddlew);
       dy = -dy;
     } else if (y + dy + ballr > HEIGHT) {
-      if (bonusActive) resetBonus();
-      lifes--;
-      if (lifes <= 0) {
-        gameOver();
+      if (ball2) {
+        ball1 = false;
       } else {
-        resetBall();
+        if (bonusActive) resetBonus();
+        lifes--;
+        if (lifes <= 0) {
+          gameOver();
+        } else {
+          resetBall(1);
+        }
       }
     }
   }
@@ -211,19 +240,77 @@ function handleBall(row, col, ball = 1) {
   y += dy;
 }
 
+function handleBall2(row, col) {
+  //reverse the ball and edit the brick value
+  if (y2 < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] !== 0) {
+    dy2 = -dy2;
+    bricks[row][col] -= 1;
+    if (bricks[row][col] === 0) {
+      brokenBricks++;
+    }
+  }
+
+  // rebound from the left or right side of the canvas
+  if (x2 + dx2 + ballr > WIDTH || x2 + dx2 - ballr < 0) dx2 = -dx2;
+
+  // rebound from the top of the canvas
+  if (y2 + dy2 - ballr < 0) dy2 = -dy2;
+
+  // if the ball goes below the paddle, lose a life
+  if (y2 + dy2 + ballr > HEIGHT - paddleh - PADDLE_PADDING) {
+    if (x2 > paddlex && x2 < paddlex + paddlew) {
+      //move the ball differently based on where it hit the paddle
+      dx2 = 8 * ((x2 - (paddlex + paddlew / 2)) / paddlew);
+      dy2 = -dy2;
+    } else if (y2 + dy2 + ballr > HEIGHT) {
+      if (ball1) {
+        ball2 = false;
+      } else {
+        if (bonusActive) resetBonus();
+        lifes--;
+        if (lifes <= 0) {
+          gameOver();
+        } else {
+          resetBall(2);
+        }
+      }
+    }
+  }
+
+  // move the ball
+  x2 += dx2;
+  y2 += dy2;
+}
+
 // ---------------------------------------------------------------------- BONUS
 // random bonus
 function randomBonus() {
   bonusType = Math.floor(Math.random() * bonusProps.length);
 }
 
+function randomBall() {
+  if (!ball1 || !ball2) {
+    const random = Math.random();
+    if (random < 0.001) {
+      console.log("NEW BALL BONUS");
+      newBall = true;
+      ballbonusx = Math.floor(Math.random() * (WIDTH - 20) + 10);
+      ballbonusy = Math.floor(Math.random() * (HEIGHT - 200) + 100);
+    }
+  }
+}
+
 // draw a bonus that slides down
-function drawBonus() {
+function drawBonus(ball = false) {
   ctx.fillStyle = "red";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.font = "bold 20px sans-serif";
-  ctx.fillText(bonusProps[bonusType].icon, bonusx, bonusy);
+  if (!ball) {
+    ctx.fillText(bonusProps[bonusType].icon, bonusx, bonusy);
+  } else {
+    ctx.fillText(bonusBall.icon, ballbonusx, ballbonusy);
+  }
 }
 
 // draw a rectangle to show the duration of the bonus
@@ -249,7 +336,7 @@ function resetBonus() {
 
   bonusTime = 0;
   bonusBricks = brokenBricks + Math.floor(Math.random() * 5 + 3);
-  bonusBricks = brokenBricks + 1;
+  // bonusBricks = brokenBricks + 1; // para probar bonus
   bonusx = Math.floor(Math.random() * (WIDTH - 20) + 10);
   bonusy = Math.floor(Math.random() * (HEIGHT - 200) + 100);
 }

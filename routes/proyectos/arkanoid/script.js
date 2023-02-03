@@ -22,9 +22,9 @@ function draw() {
   ctx.fillStyle = backcolor;
   clear();
   ctx.fillStyle = ballcolor;
-  circle(x, y, ballr);
 
-  // if (ball2) circle(x2, y2, ballr);
+  if (ball1) circle(x, y, ballr);
+  if (ball2) circle(x2, y2, ballr);
 
   if (rightDown) paddlex += 5;
   else if (leftDown) paddlex -= 5;
@@ -36,10 +36,19 @@ function draw() {
 
   rowheight = BRICKHEIGHT + PADDING;
   colwidth = BRICKWIDTH + PADDING;
-  row = Math.floor(y / rowheight);
-  col = Math.floor(x / colwidth);
 
-  handleBall(row, col, 1);
+  if (ball1) {
+    row = Math.floor(y / rowheight);
+    col = Math.floor(x / colwidth);
+    handleBall(row, col);
+  }
+
+  if (ball2) {
+    row2 = Math.floor(y2 / rowheight);
+    col2 = Math.floor(x2 / colwidth);
+    handleBall2(row2, col2);
+  }
+
   checkBonus();
 
   // if breaks bonusBricks, generate a bonus
@@ -50,7 +59,7 @@ function draw() {
 
     // if bonus is out of canvas, reset bonus
     if (bonusy > HEIGHT) {
-      console.log("out");
+      console.log("BONUS OUT");
       resetBonus();
     }
     // if bonus is in the paddle, activate bonus
@@ -59,6 +68,32 @@ function draw() {
         activateBonus();
       }
     }
+  }
+
+  // if newBall, generate a new ball bonus
+  if (newBall) {
+    ballbonusy += bonusdy;
+    drawBonus(true);
+
+    if (ballbonusy > HEIGHT) {
+      console.log("BALL BONUS OUT");
+      newBall = false;
+    }
+    // if bonus is in the paddle, activate bonus
+    else if (ballbonusy + ballr > HEIGHT - paddleh - PADDLE_PADDING) {
+      if (ballbonusx > paddlex && ballbonusx < paddlex + paddlew) {
+        newBall = false;
+        if (ball1 && !ball2) {
+          resetBall(2);
+          ball2 = true;
+        } else if (ball2 && !ball1) {
+          resetBall(1);
+          ball1 = true;
+        }
+      }
+    }
+  } else {
+    randomBall();
   }
 }
 
