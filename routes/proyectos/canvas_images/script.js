@@ -1,5 +1,5 @@
 const canvas = document.getElementById("myCanvas");
-const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
 const path = "/assets/";
 const images = [
