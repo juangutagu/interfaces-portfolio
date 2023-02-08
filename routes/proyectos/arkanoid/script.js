@@ -25,7 +25,7 @@ function draw() {
   ctx.clearRect(0, 0, WIDTH, HEIGHT);
   
   // background image
-  ctx.drawImage(img, 0, 0, WIDTH, HEIGHT+145);
+  ctx.drawImage(img, 0, 0, WIDTH, HEIGHT+146);
 
   // draw ball
   ctx.fillStyle = ballcolor;
