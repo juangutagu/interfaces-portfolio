@@ -91,7 +91,7 @@ let ctx;
 let WIDTH;
 let HEIGHT;
 let paddlex;
-let paddleh = 10;
+let paddleh = 14;
 let paddlew = 75;
 let rightDown = false;
 let leftDown = false;

@@ -1,5 +1,5 @@
 let ballr = 10;
-let rowcolors = ["#EB0093", "#0008DB", "#00A308", "#FFFD0A", "#FF1C0A"];
+let rowcolors = ["#EB0093", "#89d0ff", "#00A308", "#FFFD0A", "#FF1C0A"];
 let paddlecolor = "#FFFFFF";
 let ballcolor = "#FFFFFF";
 let backcolor = "#000000";
@@ -17,12 +17,18 @@ function init() {
   canvasMaxX = canvasMinX + WIDTH;
   intervalId = setInterval(draw, 10);
 }
+let img = new Image();
+img.src = "/assets/arkanoid_background.jpeg";
 
 function draw() {
-  ctx.fillStyle = backcolor;
-  clear();
-  ctx.fillStyle = ballcolor;
+  // clear canvas
+  ctx.clearRect(0, 0, WIDTH, HEIGHT);
+  
+  // background image
+  ctx.drawImage(img, 0, 0, WIDTH, HEIGHT+145);
 
+  // draw ball
+  ctx.fillStyle = ballcolor;
   if (ball1) circle(x, y, ballr);
   if (ball2) circle(x2, y2, ballr);
 
