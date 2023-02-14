@@ -13,7 +13,16 @@
     <link rel="icon" type="image/x-icon" href="/assets/icon.ico" />
 
     <title>Contacto - JuanGutierrez</title>
-  </head>
+
+    <!-- scripts emailjs -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("ayJE7drmo29rgRWVk");
+      })();
+    </script>
+</head>
+
   <body class="simplifyColorON">
     <!-- Contiene el header, que se incluye con el script includeHTML.js  -->
     <div data-include="header"></div>
@@ -30,18 +39,18 @@
 
         <div class="center">
           <!-- GET para que cargue bien, pero debería ser POST -->
-          <form action="/routes/contact/" method="GET" class="contactForm">
+          <div class="contactForm">
             <label for="name">Nombre</label>
             <input type="text" id="name" name="name" placeholder="Tu nombre.." />
 
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Tu email.." />
 
-            <label for="subject">Contenido</label>
-            <textarea id="subject" name="subject" placeholder="Escribe algo.." style="height: 200px"></textarea>
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" placeholder="Escribe algo.." style="height: 200px"></textarea>
 
-            <button type="submit">Enviar</button>
-          </form>
+            <button onclick="enviarMail()">Enviar</button>
+          </div>
         </div>
       </section>
       <!-- ----------------------- END CONTENT ----------------------- -->
@@ -53,4 +62,5 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="/js/includeHTML.js"></script>
+  <script src="./script.js"></script>
 </html>
