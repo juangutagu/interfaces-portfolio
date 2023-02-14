@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="description" content="Página web de Juan Gutierrez" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="Juan Gutierrez" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" type="image/x-icon" href="/assets/icon.ico" />
+
+    <title>Contacto - JuanGutierrez</title>
+  </head>
+  <body class="simplifyColorON">
+    <!-- Contiene el header, que se incluye con el script includeHTML.js  -->
+    <div data-include="header"></div>
+
+    <div class="mainContainer">
+      <!-- Contiene el código del aside, que se incluye con el script includeHTML.js  -->
+      <aside class="simplifyWhite" data-include="aside"></aside>
+
+      <!-- ----------------------- START CONTENT ----------------------- -->
+      <section id="editableContainer" class="editableContainer simplifyWhite">
+        <h1>Contacta conmigo!</h1>
+
+        <br />
+
+        <div class="center">
+          <!-- GET para que cargue bien, pero debería ser POST -->
+          <form action="/routes/contact/" method="GET" class="contactForm">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" placeholder="Tu nombre.." />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Tu email.." />
+
+            <label for="subject">Contenido</label>
+            <textarea id="subject" name="subject" placeholder="Escribe algo.." style="height: 200px"></textarea>
+
+            <button type="submit">Enviar</button>
+          </form>
+        </div>
+      </section>
+      <!-- ----------------------- END CONTENT ----------------------- -->
+    </div>
+
+    <!-- Contiene el código del footer, que se incluye con el script includeHTML.js  -->
+    <div data-include="footer"></div>
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="/js/includeHTML.js"></script>
+</html>
