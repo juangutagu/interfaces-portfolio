@@ -6,8 +6,7 @@
   --themeBackground: #dee8f1;
   --theme1: #1d4e89;
   --theme2: #3b7aa4;
-  --theme3: #f79256;
-  /* --theme4: #fbd1a2; */
+  --theme3: #f59965; 
   --textLight: white;
   --textDark: #403335;
 
@@ -40,7 +39,7 @@ h3 {
   margin-top: 6px;
 }
 
-h4 {
+h4, label {
   margin-bottom: 15px;
   margin-top: 15px;
 }
@@ -71,6 +70,8 @@ nav {
 }
 
 nav > a {
+  color: var(--textDark);
+  font-weight: 900;
   text-decoration-line: none;
   min-width: fit-content;
   padding: 8px 15px;

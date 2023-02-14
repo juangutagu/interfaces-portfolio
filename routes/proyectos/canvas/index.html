@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/style.css" />
@@ -17,7 +17,7 @@
           <button class="collapsible simplifyBlack">!Cambia el estilo!</button>
           <div class="collapsibleContent simplifyBlack">
             <div class="flex">
-              <h4 class="left">Elegir letra</h4>
+              <label for="fontFamilyInput" class="left">Elegir letra</label>
               <select name="fontFamilyInput" id="fontFamilyInput" class="right">
                 <option value="Comfortaa">Comfortaa</option>
                 <option value="Pacifico">Pacifico</option>
@@ -26,18 +26,18 @@
               </select>
             </div>
 
-            <div class="flex">
-              <h4 class="left">Tamaño</h4>
+            <div class="flex marginBottom">
+              <label for="fontSizeInput" class="left">Tamaño</label>
               <input id="fontSizeInput" type="number" class="right" />
             </div>
 
             <div class="flex">
-              <h4 class="left">Color fondo</h4>
+              <label for="backgroundColorInput" class="left">Color fondo</label>
               <input id="backgroundColorInput" type="color" class="right" />
             </div>
 
             <div class="flex">
-              <h4 class="left">Color letra</h4>
+              <label for="colorInput" class="left">Color letra</label>
               <input id="colorInput" type="color" class="right" />
             </div>
           </div>
@@ -47,7 +47,7 @@
           <button class="collapsible active simplifyBlack">Temas</button>
           <div class="collapsibleContent simplifyBlack">
             <div class="flex">
-              <h4 class="left">Tema</h4>
+              <label for="themeInput" class="left">Tema</label>
               <select name="themeInput" id="themeInput" class="right">
                 <option value="custom">Personalizado</option>
                 <option value="theme1">Tema 1</option>
@@ -58,9 +58,9 @@
 
             <h3>Accesible</h3>
             <div class="flex">
-              <input id="fontSizeMore" type="button" class="configButton" value="  +  " />
-              <h4>Letra</h4>
               <input id="fontSizeLess" type="button" class="configButton" value="  -  " />
+              <label for="fontSizeMore" class="left">Letra</label>
+              <input id="fontSizeMore" type="button" class="configButton" value="  +  " />
             </div>
 
             <h3>Color simple</h3>
@@ -71,8 +71,14 @@
           </div>
         </div>
 
-        <img class="skill simplifyWhite" src="https://www.juangutierreza.com/static/media/reactjs.108de704.png" />
-        <!-- <img class="skill simplifyWhite" src="https://www.juangutierreza.com/static/media/nodejs.edc6ef66.png" /> -->
+        <img
+          class="skill simplifyWhite"
+          src="https://www.juangutierreza.com/static/media/reactjs.108de704.png"
+          alt="React logo"
+          width="180px"
+          height="180px"
+        />
+        <!-- <img class="skill simplifyWhite" src="https://www.juangutierreza.com/static/media/nodejs.edc6ef66.png" alt="Node logo" width="180px" height="180px"/> -->
       </aside>
       <!-- ----------------------- END ASIDE ----------------------- -->
       <!-- ----------------------- START CONTENT ----------------------- -->
