@@ -15,80 +15,12 @@
     <title>Currículum - JuanGutierrez</title>
   </head>
   <body class="simplifyColorON">
-    <!-- Contiene el código del header, que se incluye con el script includeHTML.js  -->
+    <!-- Contiene el header, que se incluye con el script includeHTML.js  -->
     <div data-include="header"></div>
 
     <div class="mainContainer">
-      <!-- ----------------------- START ASIDE ----------------------- -->
-      <aside class="simplifyWhite">
-        <div class="styleConfig simplifyBlack">
-          <button class="collapsible simplifyBlack">!Cambia el estilo!</button>
-          <div class="collapsibleContent simplifyBlack">
-            <div class="flex">
-              <label for="fontFamilyInput" class="left">Elegir letra</label>
-              <select name="fontFamilyInput" id="fontFamilyInput" class="right">
-                <option value="Comfortaa">Comfortaa</option>
-                <option value="Pacifico">Pacifico</option>
-                <option value="Roboto">Roboto</option>
-                <option value="Rubik Gemstones">Rubik Gemstones</option>
-              </select>
-            </div>
-
-            <div class="flex marginBottom">
-              <label for="fontSizeInput" class="left">Tamaño</label>
-              <input id="fontSizeInput" type="number" class="right" />
-            </div>
-
-            <div class="flex">
-              <label for="backgroundColorInput" class="left">Color fondo</label>
-              <input id="backgroundColorInput" type="color" class="right" />
-            </div>
-
-            <div class="flex">
-              <label for="colorInput" class="left">Color letra</label>
-              <input id="colorInput" type="color" class="right" />
-            </div>
-          </div>
-        </div>
-
-        <div class="styleConfig simplifyBlack">
-          <button class="collapsible active simplifyBlack">Temas</button>
-          <div class="collapsibleContent simplifyBlack">
-            <div class="flex">
-              <label for="themeInput" class="left">Tema</label>
-              <select name="themeInput" id="themeInput" class="right">
-                <option value="custom">Personalizado</option>
-                <option value="theme1">Tema 1</option>
-                <option value="theme2">Tema 2</option>
-                <option value="theme3">Tema 3</option>
-              </select>
-            </div>
-
-            <h3>Accesible</h3>
-            <div class="flex">
-              <input id="fontSizeLess" type="button" class="configButton" value="  -  " />
-              <label for="fontSizeMore" class="left">Letra</label>
-              <input id="fontSizeMore" type="button" class="configButton" value="  +  " />
-            </div>
-
-            <h3>Color simple</h3>
-            <div class="flex">
-              <input id="simplifyColorON" type="button" class="configButton simplifyColor left" value="ON" />
-              <input id="simplifyColorOFF" type="button" class="configButton simplifyColor right" value="OFF" />
-            </div>
-          </div>
-        </div>
-
-        <img
-          class="skill simplifyWhite"
-          src="https://www.juangutierreza.com/static/media/reactjs.108de704.png"
-          alt="React logo"
-          width="180px"
-          height="180px"
-        />
-        <!-- <img class="skill simplifyWhite" src="https://www.juangutierreza.com/static/media/nodejs.edc6ef66.png" alt="Node logo" width="180px" height="180px"/> -->
-      </aside>
-      <!-- ----------------------- END ASIDE ----------------------- -->
+      <!-- Contiene el código del aside, que se incluye con el script includeHTML.js  -->
+      <aside class="simplifyWhite" data-include="aside"></aside>
 
       <!-- ----------------------- START CONTENT ----------------------- -->
       <section id="editableContainer" class="editableContainer simplifyWhite">
@@ -117,7 +49,5 @@
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="/js/collapsible.js"></script>
   <script src="/js/includeHTML.js"></script>
-  <script src="/js/script.js"></script>
 </html>
