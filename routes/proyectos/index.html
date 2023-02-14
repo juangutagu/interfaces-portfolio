@@ -8,6 +8,7 @@
     <title>Proyectos - JuanGutierrezA</title>
   </head>
   <body class="simplifyColorON">
+    <!-- Contiene el código del header, que se incluye con el script includeHTML.js  -->
     <div data-include="header"></div>
 
     <div class="mainContainer">
@@ -86,34 +87,19 @@
       <section id="editableContainer" class="editableContainer simplifyWhite">
         <h1>Mis proyectos</h1>
 
-        <ul>
-          <li>
-            <a href="/routes/proyectos/animations"><h3>Animaciones</h3></a>
-          </li>
-          <li>
-            <a href="/routes/proyectos/drag_n_drop"><h3>Drag and drop (reciclaje)</h3></a>
-          </li>
-          <li>
-            <a href="/routes/proyectos/video"><h3>Vídeo</h3></a>
-          </li>
-          <li>
-            <a href="/routes/proyectos/canvas"><h3>Canvas</h3></a>
-          </li>
-          <li>
-            <a href="/routes/proyectos/arkanoid"><h3>Arkanoid</h3></a>
-          </li>
-          <li>
-            <a href="/routes/proyectos/canvas_images"><h3>Imágenes canvas</h3></a>
-          </li>
+        <ul id="projectList" class="projectList">
+          <!-- El código en ./script.js incluye el contenido-->
         </ul>
       </section>
       <!-- ----------------------- END CONTENT ----------------------- -->
     </div>
 
+    <!-- Contiene el código del footer, que se incluye con el script includeHTML.js  -->
     <div data-include="footer"></div>
   </body>
 
   <script src="/js/collapsible.js"></script>
   <script src="/js/includeHTML.js"></script>
   <script src="/js/script.js"></script>
+  <script src="./script.js"></script>
 </html>
